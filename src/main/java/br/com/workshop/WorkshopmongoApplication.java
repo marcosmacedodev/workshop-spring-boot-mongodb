@@ -1,4 +1,4 @@
-package br.com.workshop.app;
+package br.com.workshop;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,5 +9,4 @@ public class WorkshopmongoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(WorkshopmongoApplication.class, args);
 	}
-
 }
