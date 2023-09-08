@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.workshop.entities.User;
+import br.com.workshop.entities.dtos.UserDto;
 import br.com.workshop.services.UserService;
 
 @RestController
@@ -19,8 +19,9 @@ public class UserController {
 	private UserService userService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<User>> findAll() {
-		List<User> users = userService.findAll();
+	public ResponseEntity<List<UserDto>> findAll() {
+		List<UserDto> users = 
+				userService.findAll().stream().map(u -> new UserDto(u)).toList();
 		return ResponseEntity.ok().body(users);
 	}
 }
