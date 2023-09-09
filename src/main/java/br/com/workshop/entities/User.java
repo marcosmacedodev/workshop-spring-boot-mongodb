@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import br.com.workshop.entities.dtos.UserDto;
 
-@Document(collection="user")
+@Document(collection="users")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
