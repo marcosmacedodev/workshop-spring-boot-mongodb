@@ -50,4 +50,10 @@ public class UserController {
 		userService.remove(id);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@RequestMapping(value = "/{userId}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@PathVariable(value = "userId") String id, @RequestBody UserDto userDto){
+		userService.save(id, userDto.toUser());
+		return ResponseEntity.noContent().build();
+	}
 }

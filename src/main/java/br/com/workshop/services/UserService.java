@@ -35,5 +35,11 @@ public class UserService{
 		User entity = findById(id);
 		userRepository.delete(entity);
 	}
+	
+	public User save(String id, User entity) {
+		findById(id);
+		entity.setId(id);
+		return userRepository.save(entity);
+	}
 
 }
