@@ -43,4 +43,8 @@ public class UserDto implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public User toUser() {
+		return new User(id, name, email);
+	}
 }

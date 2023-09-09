@@ -25,5 +25,10 @@ public class UserService{
 		Optional<User> optional = userRepository.findById(id);
 		return optional.orElseThrow(() -> new ObjectNotFoundException("Objeto com id: " + id + ", não encontrado!"));
 	}
+	
+	public User insert(User entity) {
+		entity.setId(null);
+		return userRepository.save(entity);
+	}
 
 }
