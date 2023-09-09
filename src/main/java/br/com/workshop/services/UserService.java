@@ -30,5 +30,10 @@ public class UserService{
 		entity.setId(null);
 		return userRepository.save(entity);
 	}
+	
+	public void remove(String id) {
+		User entity = findById(id);
+		userRepository.delete(entity);
+	}
 
 }
