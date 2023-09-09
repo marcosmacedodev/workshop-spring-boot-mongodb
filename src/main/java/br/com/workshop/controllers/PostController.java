@@ -27,9 +27,13 @@ public class PostController {
 	}
 	
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public ResponseEntity<List<PostDto>> getByTitle(@RequestParam(value = "title", defaultValue = "") String title){
+	public ResponseEntity<List<PostDto>> getByTitle(
+			@RequestParam(value = "title", defaultValue = "") String title,
+			@RequestParam(value = "ignoreCase", defaultValue = "false") String ignoreCaseStr
+	){
+		boolean ignoreCase = Boolean.valueOf(ignoreCaseStr);
 		title = Utils.decodeParam(title);
-		List<PostDto> postsDto = postService.findByTitle(title).stream().map(p -> p.toPostDto()).toList();
+		List<PostDto> postsDto = postService.findByTitle(title, ignoreCase).stream().map(p -> p.toPostDto()).toList();
 		return ResponseEntity.ok().body(postsDto);
 	}
 }
