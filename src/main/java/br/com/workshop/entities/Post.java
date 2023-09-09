@@ -7,6 +7,8 @@ import java.util.Objects;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import br.com.workshop.entities.dtos.PostDto;
+
 @Document(collection = "posts")
 public class Post implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -67,6 +69,10 @@ public class Post implements Serializable {
 
 	public void setAuthor(User author) {
 		this.author = author;
+	}
+	
+	public PostDto toPostDto() {
+		return new PostDto(this);
 	}
 
 	@Override

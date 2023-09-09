@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.workshop.entities.User;
+import br.com.workshop.entities.dtos.PostDto;
 import br.com.workshop.entities.dtos.UserDto;
 import br.com.workshop.services.UserService;
 
@@ -55,5 +56,12 @@ public class UserController {
 	public ResponseEntity<Void> update(@PathVariable(value = "userId") String id, @RequestBody UserDto userDto){
 		userService.save(id, userDto.toUser());
 		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(value = "/{userId}/posts", method = RequestMethod.GET)
+	public ResponseEntity<List<PostDto>> getPosts(@PathVariable(value = "userId") String id) {
+		User entity = userService.findById(id);
+		List<PostDto> posts = entity.getPosts().stream().map(post -> post.toPostDto()).toList();
+		return ResponseEntity.ok().body(posts);
 	}
 }
